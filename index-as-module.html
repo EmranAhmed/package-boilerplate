@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Boilerplate</title>
+	<link rel="stylesheet" href="./build/modules/style-index.css" />
+
+	<script type="importmap">
+		{
+		  "imports":
+			  {
+				  "@storepress/utils":"./build/modules/storepress-utils.js"
+			  }
+		}
+	</script>
+
+	<link rel="modulepreload" href="./build/modules/storepress-utils.js" />
+</head>
+
+<body>
+
+<div class="container">
+
+	<button class="default">Will Toggle CSS Class - Module</button>
+
+</div>
+
+<script type="module" src="./build/modules/index.js"></script>
+</body>
+
+</html>
