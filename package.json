@@ -79,8 +79,6 @@
 		"package": "./bin/package.js",
 		"prezip": "npm run ready",
 		"zip": "./bin/package.js --zip",
-		"test:e2e": "wp-scripts test-e2e",
-		"test:unit": "wp-scripts test-unit-js",
 		"start": "npm run clean && wp-scripts start --webpack-copy-php --webpack-no-externals --experimental-modules",
 		"pre-commit": "lint-staged"
 	}
