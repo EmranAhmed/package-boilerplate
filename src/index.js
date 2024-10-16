@@ -2,7 +2,11 @@
  * WordPress dependencies
  */
 
-import { createPluginInstance, getPluginInstance, triggerEvent } from '@storepress/utils';
+import {
+	createPluginInstance,
+	getPluginInstance,
+	triggerEvent,
+} from '@storepress/utils';
 
 /**
  * Internal dependencies
@@ -10,82 +14,80 @@ import { createPluginInstance, getPluginInstance, triggerEvent } from '@storepre
 import { Plugin } from './Plugin';
 import './style.scss';
 
-function ToggleInit(){
-
+function ToggleInit() {
 	const Toggle = {
-		getInstance( element, options ) {
-			return createPluginInstance( element, options, Plugin );
+		getInstance(element, options) {
+			return createPluginInstance(element, options, Plugin);
 		},
 
-		getPluginInstance( element ) {
-			return getPluginInstance( element );
+		getPluginInstance(element) {
+			return getPluginInstance(element);
 		},
 
-		reInitWith( el, options ) {
-			this.destroyWith( el );
-			this.initWith( el, options );
+		reInitWith(el, options) {
+			this.destroyWith(el);
+			this.initWith(el, options);
 		},
 
-		initWith( el, options ) {
-			const instance = this.getInstance( el, options );
+		initWith(el, options) {
+			const instance = this.getInstance(el, options);
 
-			for ( const { element, reset } of instance ) {
-				element.addEventListener( 'destroy', reset );
+			for (const { element, reset } of instance) {
+				element.addEventListener('destroy', reset);
 			}
 
 			return instance;
 		},
 
-		destroyWith( el ) {
-			for ( const { destroy } of this.getInstance( el ) ) {
+		destroyWith(el) {
+			for (const { destroy } of this.getInstance(el)) {
 				destroy();
 			}
-		}
+		},
 	};
 
 	// Toggle ReInit.
-	document.addEventListener( 'toggle_re_init', ( event ) => {
+	document.addEventListener('toggle_re_init', (event) => {
 		const defaultSettings = {};
 		const settings = { ...defaultSettings, ...event.detail?.settings };
 		const element = event.detail?.element;
 
-		if ( Array.isArray( element ) ) {
-			for ( const el of element ) {
-				Toggle.reInitWith( el, settings );
+		if (Array.isArray(element)) {
+			for (const el of element) {
+				Toggle.reInitWith(el, settings);
 			}
 		} else {
-			Toggle.reInitWith( element, settings );
+			Toggle.reInitWith(element, settings);
 		}
-	} );
+	});
 
 	// Toggle Init.
-	document.addEventListener( 'toggle_init', ( event ) => {
+	document.addEventListener('toggle_init', (event) => {
 		const defaultSettings = {};
 		const settings = { ...defaultSettings, ...event.detail?.settings };
 		const element = event.detail?.element;
 
-		if ( Array.isArray( element ) ) {
-			for ( const el of element ) {
-				Toggle.initWith( el, settings );
+		if (Array.isArray(element)) {
+			for (const el of element) {
+				Toggle.initWith(el, settings);
 			}
 		} else {
-			Toggle.initWith( element, settings );
+			Toggle.initWith(element, settings);
 		}
-	} );
+	});
 
 	// Destroy
-	document.addEventListener( 'toggle_destroy', ( event ) => {
+	document.addEventListener('toggle_destroy', (event) => {
 		const element = event.detail?.element;
 
-		if ( Array.isArray( element ) ) {
-			for ( const el of element ) {
-				Toggle.destroyWith( el );
+		if (Array.isArray(element)) {
+			for (const el of element) {
+				Toggle.destroyWith(el);
 			}
 		} else {
-			Toggle.destroyWith( element );
+			Toggle.destroyWith(element);
 		}
-	} );
-
+	});
 
 	/*
 	triggerEvent( document, 'toggle_init', {
@@ -93,26 +95,22 @@ function ToggleInit(){
 		settings: {},
 	} );
 	*/
-
 }
 
-document.addEventListener( 'DOMContentLoaded', () => {
-
-
+document.addEventListener('DOMContentLoaded', () => {
 	// Init
 	ToggleInit();
 	// Dispatch / trigger Events:
 
-	triggerEvent( document, 'toggle_init', {
+	triggerEvent(document, 'toggle_init', {
 		element: 'button',
 		settings: {},
-	} );
+	});
 
 	/*	triggerEvent( document, 'slider_init', {
 		element: '.base',
 		settings: {},
 	} );*/
-
-} );
+});
 
 export default ToggleInit;

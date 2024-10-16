@@ -1,14 +1,9 @@
 /**
  * External dependencies
  */
-import {
-	getOptionsFromAttribute,
-	getPluginInstance,
-	swipeEvent,
-	triggerEvent,
-} from '@storepress/utils';
+import { getOptionsFromAttribute } from '@storepress/utils';
 
-function Plugin( element, options ) {
+function Plugin(element, options) {
 	// Default Settings
 	const DEFAULTS = {
 		defaultClass: 'default',
@@ -24,7 +19,7 @@ function Plugin( element, options ) {
 		this.settings = {
 			...DEFAULTS,
 			...options,
-			...getOptionsFromAttribute( this.$element, ATTRIBUTE ),
+			...getOptionsFromAttribute(this.$element, ATTRIBUTE),
 		};
 
 		addEvents();
@@ -33,29 +28,35 @@ function Plugin( element, options ) {
 	};
 
 	const addEvents = () => {
-		this.$element.addEventListener('click', handleToggle)
+		this.$element.addEventListener('click', handleToggle);
 	};
 
-
-	const handleToggle = ( event ) => {
-
-		if( this.$element.classList.contains(this.settings.defaultClass) ){
-			this.$element.classList.replace(this.settings.defaultClass, this.settings.toggledClass);
+	const handleToggle = () => {
+		if (this.$element.classList.contains(this.settings.defaultClass)) {
+			this.$element.classList.replace(
+				this.settings.defaultClass,
+				this.settings.toggledClass
+			);
 			return;
 		}
 
-		this.$element.classList.replace(this.settings.toggledClass, this.settings.defaultClass);
+		this.$element.classList.replace(
+			this.settings.toggledClass,
+			this.settings.defaultClass
+		);
 	};
 
-
 	const removeEvents = () => {
-		this.$element.removeEventListener( 'click', handleToggle );
-	}
+		this.$element.removeEventListener('click', handleToggle);
+	};
 
 	const removeClasses = () => {
-		this.$element.classList.remove(this.settings.toggledClass, this.settings.defaultClass)
-		this.$element.classList.add(this.settings.defaultClass)
-	}
+		this.$element.classList.remove(
+			this.settings.toggledClass,
+			this.settings.defaultClass
+		);
+		this.$element.classList.add(this.settings.defaultClass);
+	};
 
 	const reset = () => {
 		removeEvents();
@@ -63,9 +64,9 @@ function Plugin( element, options ) {
 	};
 
 	// Expose to public.
-	const expose = () => ( {
+	const expose = () => ({
 		reset,
-	} );
+	});
 
 	return init();
 }

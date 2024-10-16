@@ -5,8 +5,8 @@
 - `git clone https://github.com/EmranAhmed/package-boilerplate.git`
 - `npm install`
 - `npm run packages-update` - Update WordPress packages
-- 
-## Develop:
+
+## Develop
 
 - `npm start`
 
@@ -15,7 +15,7 @@
 - `npm run lint:js` - Lint Javascript
 - `npm run lint:css` - Lint CSS
 
-## Release:
+## Release
 
 - `npm run build` - build
 - `npm run package` - make package directory

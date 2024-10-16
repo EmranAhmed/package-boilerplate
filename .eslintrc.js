@@ -176,6 +176,7 @@ module.exports = {
 		wpApiSettings: true,
 		wcSettings: true,
 		es6: true,
+		StorePress: true,
 	},
 	rules: {
 		'@woocommerce/dependency-group': 'off',
@@ -190,7 +191,7 @@ module.exports = {
 		'@wordpress/i18n-text-domain': [
 			'error',
 			{
-				allowedTextDomain: [ 'storepress-base-plugin' ],
+				allowedTextDomain: [ 'text-domain' ],
 			},
 		],
 	},

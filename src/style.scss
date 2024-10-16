@@ -9,7 +9,7 @@ button {
 	@include boilerplate.init("data-toggle");
 	&.default{
 		background-color: #760909;
-		color: white;
+		color: #fff;
 	}
 	&.toggle{
 		background-color: #1a852f;
